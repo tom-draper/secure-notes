@@ -1,0 +1,50 @@
+
+h1 {
+    padding: 0.8em 0;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.main-container {
+    margin-top: 25vh;
+}
+
+.details {
+    margin: 5em 0 2em;
+}
+
+.links-container {
+    display: grid;
+    place-items: center;
+}
+
+ul {
+    display: flex;
+    padding: 0 5em;
+}
+
+a {
+    display: block;
+    margin: 0 1em;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button {
+    padding: 0 1em;
+    vertical-align: top;
+}
+
+button,
+input {
+    height: 2.2em;
+}
+
+input {
+    padding: 0 0.5em;
+    width: 24em;
+}
+
+a:hover {
+    text-decoration: underline;
+}

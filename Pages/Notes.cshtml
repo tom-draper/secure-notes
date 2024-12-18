@@ -1,0 +1,8 @@
+@page "notes/{*slug}"
+@model NotesModel
+@{
+    var slug = Model.Slug;
+}
+
+<h1>Notes Page</h1>
+<p>Captured Slug: @slug</p>

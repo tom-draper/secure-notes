@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SecureNotes.Pages;
 
-public class IndexModel : PageModel
+public class NotesModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
+    public string Slug = string.Empty;
 
-    public IndexModel(ILogger<IndexModel> logger)
+    public NotesModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
     }
@@ -15,11 +16,5 @@ public class IndexModel : PageModel
     public void OnGet()
     {
 
-    }
-
-    public void OnPost()
-    {
-        // Handle the button click here
-        Console.WriteLine("Button was clicked!");
     }
 }

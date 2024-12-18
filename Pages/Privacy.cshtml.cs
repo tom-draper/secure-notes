@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace secure_notes.Pages;
+namespace SecureNotes.Pages;
 
 public class PrivacyModel : PageModel
 {
