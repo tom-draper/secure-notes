@@ -1,8 +1,14 @@
-@page "notes/{*slug}"
+@page "/notes/{NoteID}"
 @model NotesModel
 @{
-    var slug = Model.Slug;
+    var noteID = Model.NoteID;
 }
 
-<h1>Notes Page</h1>
-<p>Captured Slug: @slug</p>
+<div class="notes-container">
+    <h2>Notes Page</h2>
+
+    @if (noteID != "")
+    {
+        <p>You're viewing Note with ID: @noteID</p>
+    }
+<div>
