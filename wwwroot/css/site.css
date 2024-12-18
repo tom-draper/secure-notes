@@ -21,3 +21,7 @@ body {
   margin-bottom: 60px;
   font-family: 'Geist', 'Noto Sans', 'Arial';
 }
+
+.secondary-container {
+  margin: 2em 1em;
+}
