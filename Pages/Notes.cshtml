@@ -9,6 +9,16 @@
 
     @if (noteID != "")
     {
-        <p>You're viewing Note with ID: @noteID</p>
+        <p>You're viewing Notes for ID: @noteID</p>
     }
+
+    <div class="notes">
+        @foreach (var note in Model.GetNotes(noteID))
+        {
+            <div class="note">
+                <p>@note.Timestamp.ToString("MMMM dd, yyyy h:mm tt")</p>
+                <p>@note.Content</p>
+            </div>
+        }
+    </div>
 <div>

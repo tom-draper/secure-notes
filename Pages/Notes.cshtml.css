@@ -2,3 +2,10 @@
 .notes-container {
     margin: 2em 1em;
 }
+
+.note {
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    margin: 2em 0;
+    padding: 2em 2em 1em;
+}
