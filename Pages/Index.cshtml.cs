@@ -16,4 +16,10 @@ public class IndexModel : PageModel
     {
 
     }
+
+    public void OnPost()
+    {
+        // Handle the button click here
+        Console.WriteLine("Button was clicked!");
+    }
 }

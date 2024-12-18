@@ -4,7 +4,13 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="main-container text-center">
+    <h1>Secure Notes</h1>
+    <div class="flex">
+        <form method="post" class="form-nav-notes">
+            <input type="text" placeholder="Note ID" id="noteID" class="input-nav-notes" ></input>
+            <button type="submit" class="btn btn-primary btn-nav-notes">Enter</button>
+        </form>
+        <p class="details text-muted">Create and share anonymous note against a unique ID.</p>
+    </div>
 </div>
