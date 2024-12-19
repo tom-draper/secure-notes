@@ -4,7 +4,7 @@ Post and view anonymous notes stored against a unique ID.
 
 ## Getting Started
 
-## Example Usage Scenarios
+## Example Use Cases
 
 ### Class Feedback
 
@@ -12,4 +12,8 @@ At the end of a semester, a lecturer requests feedback from their students. They
 
 ### Safeguarding
 
-A supply teacher at a Primary School notices one child appears underweight. They open the school's Secure Notes instance and enter the student's ID. They register their observation anonymously with a new note and notice a number of concerning notes previously submitted before deciding to raise the issue with their superior.
+A substitute teacher at a Primary School notices a child in the class appears underweight. They connect to the school's Secure Notes webpage set up for the staff to use and enter the student's ID. They register their observation anonymously with a new note and notice a number of concerning notes previously submitted before deciding to raise the issue with their superior.
+
+### Questions for Speaker
+
+At a yearly keynote event, the audience is encouraged to submit questions for the guest speaker. They scan a QR code on the screen which takes them to the Secure Notes URL for the talk to submit anonymous questions.
