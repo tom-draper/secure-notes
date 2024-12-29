@@ -7,10 +7,12 @@
 <div class="main-container text-center">
     <h1>Secure Notes</h1>
     <div class="flex">
-        <form method="post" class="form-nav-notes">
-            <input type="text" placeholder="Note ID" id="noteID" class="input-nav-notes" name="noteID"></input>
+        <!-- Form submission with POST method -->
+        <form method="post" asp-page="/Index" class="form-nav-notes">
+            <input type="text" placeholder="Note ID" id="noteID" class="input-nav-notes" name="noteID" />
             <button type="submit" class="btn btn-primary btn-nav-notes">Search</button>
         </form>
+
         <p class="details text-muted">Anonymous notes stored against a unique ID</p>
         <div class="links-container">
             <ul class="links">
