@@ -9,3 +9,30 @@
     margin: 2em 0;
     padding: 2em 2em 1em;
 }
+
+.header {
+    margin: 0 0.5em;
+}
+
+.create-note-container {
+    padding: 2em 0;
+}
+
+.create-note-label {
+    margin: 1em 0.5em 0.5em;
+}
+
+textarea {
+    width: 100%;
+    border-radius: 6px;
+    min-height: 9em;
+}
+
+.btn-container {
+    display: grid;
+    justify-content: right;
+}
+button {
+    padding: 0.3em 1em;
+    width: fit-content;
+}
