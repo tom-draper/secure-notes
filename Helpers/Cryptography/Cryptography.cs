@@ -7,23 +7,17 @@ namespace SecureNotes.Helpers.Cryptography;
 
 public static class Cryptography
 {
-    public static void GenerateKeyAndIVFromRandomNumber(int randomSeed, out byte[] key, out byte[] iv, int keySize = 16, int blockSize = 16)
+    // Static fields to hold the generated key and IV
+    private static readonly byte[] key;
+    private static readonly byte[] iv;
+
+    static Cryptography()
     {
-        key = new byte[keySize];
-        iv = new byte[blockSize];
-
-        using (var rng = new RNGCryptoServiceProvider())
-        {
-            // Use the random seed to generate a deterministic random number sequence
-            byte[] seedBytes = BitConverter.GetBytes(randomSeed);
-            RNGCryptoServiceProvider rngProvider = new RNGCryptoServiceProvider(seedBytes);
-
-            rngProvider.GetBytes(key); // Generate random key
-            rngProvider.GetBytes(iv);  // Generate random IV
-        }
+        // Generate key and IV at runtime in the static constructor
+        (key, iv) = Generate.GenerateKeyAndIv();
     }
 
-    public static string EncryptString(string plainText, byte[] key, byte[] iv)
+    public static string EncryptString(string plainText)
     {
         using (Aes aes = Aes.Create())
         {
@@ -37,13 +31,14 @@ public static class Cryptography
                 cs.Write(inputBytes, 0, inputBytes.Length);
                 cs.FlushFinalBlock();
 
-                return Convert.ToBase64String(ms.ToArray());
+                return Convert.ToBase64String(ms.ToArray());  // Return encrypted data as Base64 string
             }
         }
     }
 
-    public static string DecryptString(string encryptedText, byte[] key, byte[] iv)
+    public static string DecryptString(string encryptedText)
     {
+        Console.WriteLine(encryptedText);
         using (Aes aes = Aes.Create())
         {
             aes.Key = key;
@@ -56,7 +51,7 @@ public static class Cryptography
                 cs.Write(encryptedBytes, 0, encryptedBytes.Length);
                 cs.FlushFinalBlock();
 
-                return Encoding.UTF8.GetString(ms.ToArray());
+                return Encoding.UTF8.GetString(ms.ToArray());  // Return decrypted data as string
             }
         }
     }

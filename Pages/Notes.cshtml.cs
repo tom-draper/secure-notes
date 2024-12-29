@@ -2,13 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
+using SecureNotes.Helpers.Cryptography;
 
 namespace SecureNotes.Pages;
 
 public class Note
 {
-    public DateTime Timestamp { get; set; }
-    public string Content { get; set; }
+    public required DateTime Timestamp { get; set; }
+    public required string Content { get; set; }
 }
 
 public class NotesModel : PageModel
@@ -16,15 +18,7 @@ public class NotesModel : PageModel
     [BindProperty]
     public string? NoteContent { get; set; }  // This binds the input field value to the NoteID property
 
-    public string NoteID { get; set; }
-
-    // This method is automatically called when the page is requested with a route parameter
-    // public void OnGet(string NoteID)
-    // {
-    //     // The NoteID parameter will be automatically passed from the URL
-    //     this.NoteID = NoteID;
-    // }
-
+    public string? NoteID { get; set; }
 
     public List<Note> GetNotes(string NoteID)
     {
@@ -48,7 +42,8 @@ public class NotesModel : PageModel
         // Clear the session flag after successful access
         HttpContext.Session.Remove("ValidSearch");
 
-        NoteID = DecodeHash(hash);
+        string decodedURL = System.Uri.UnescapeDataString(hash);
+        NoteID = Cryptography.DecryptString(decodedURL);
 
         return Page();
     }
@@ -69,11 +64,5 @@ public class NotesModel : PageModel
         }
 
         return RedirectToPage("Index");
-    }
-
-    private string DecodeHash(string hash)
-    {
-        byte[] data = Convert.FromBase64String(hash);
-        return Encoding.UTF8.GetString(data);
     }
 }

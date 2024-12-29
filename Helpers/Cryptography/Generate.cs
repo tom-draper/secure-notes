@@ -8,19 +8,16 @@ namespace SecureNotes.Helpers.Cryptography;
 
 public static class Generate
 {
-    public static void GenerateKeyAndIVFromRandomNumber(int randomSeed, out byte[] key, out byte[] iv, int keySize = 16, int blockSize = 16)
+    public static (byte[] Key, byte[] IV) GenerateKeyAndIv()
     {
-        key = new byte[keySize];
-        iv = new byte[blockSize];
-
-        using (var rng = new RNGCryptoServiceProvider())
+        // Create an instance of AES
+        using (Aes aesAlg = Aes.Create())
         {
-            // Use the random seed to generate a deterministic random number sequence
-            byte[] seedBytes = BitConverter.GetBytes(randomSeed);
-            RNGCryptoServiceProvider rngProvider = new RNGCryptoServiceProvider(seedBytes);
+            // Generate a random key and IV
+            aesAlg.GenerateKey();  // Generates a random 256-bit key
+            aesAlg.GenerateIV();   // Generates a random 128-bit IV
 
-            rngProvider.GetBytes(key); // Generate random key
-            rngProvider.GetBytes(iv);  // Generate random IV
+            return (aesAlg.Key, aesAlg.IV);  // Return the key and IV as byte arrays
         }
     }
 }

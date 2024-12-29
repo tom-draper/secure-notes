@@ -7,7 +7,14 @@
 
 <div class="notes-container">
     <div class="header">
-        <h2>Notes Page</h2>
+        @if (notes.Count > 0)
+        {
+            <h2>@notes.Count Notes</h2>
+        }
+        else
+        {
+            <h2>Notes Page</h2>
+        }
 
         @if (noteID != "")
         {
