@@ -38,7 +38,7 @@
             @foreach (Note note in notes)
             {
                 <div class="note">
-                    <p class="text-muted">@note.Timestamp.ToString("MMMM dd, yyyy h:mm tt")</p>
+                    <p class="text-muted">@note.Timestamp?.ToString("MMMM dd, yyyy h:mm tt")</p>
                     <p>@note.Content</p>
                 </div>
             }
