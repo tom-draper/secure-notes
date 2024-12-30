@@ -20,6 +20,11 @@ public class NotesModel : PageModel
 
     public string? NoteID { get; set; }
 
+    public string GetNoteID()
+    {
+        return NoteID;
+    }
+
     public List<Note> GetNotes(string NoteID)
     {
         return new List<Note>
@@ -29,7 +34,7 @@ public class NotesModel : PageModel
             };
     }
 
-    public IActionResult? OnGet(string hash)
+    public IActionResult OnGet(string hash)
     {
         if (string.IsNullOrEmpty(hash))
             return RedirectToPage("/Index");
@@ -42,25 +47,27 @@ public class NotesModel : PageModel
         // Clear the session flag after successful access
         HttpContext.Session.Remove("ValidSearch");
 
-        string decodedURL = System.Uri.UnescapeDataString(hash);
-        NoteID = Cryptography.DecryptString(decodedURL);
+        NoteID = DecodeEncryptedNoteID(hash);
 
         return Page();
     }
 
-    public IActionResult? OnPost()
+    private string DecodeEncryptedNoteID(string hash)
     {
-        string? noteContent = NoteContent;
+        string decodedURL = System.Uri.UnescapeDataString(hash);
+        return Cryptography.DecryptString(decodedURL);
+    }
 
-        // Handle the button click here
+    public IActionResult OnPost()
+    {
         Console.WriteLine("Send button was clicked!");
 
-        Console.WriteLine(noteContent);
+        Console.WriteLine(NoteContent);
 
-        if (string.IsNullOrEmpty(noteContent))
+        if (string.IsNullOrEmpty(NoteContent))
         {
             Console.WriteLine("Note content is empty!");
-            return null;
+            return Page();
         }
 
         return RedirectToPage("Index");

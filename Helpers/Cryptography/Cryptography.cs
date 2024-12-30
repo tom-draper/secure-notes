@@ -38,7 +38,6 @@ public static class Cryptography
 
     public static string DecryptString(string encryptedText)
     {
-        Console.WriteLine(encryptedText);
         using (Aes aes = Aes.Create())
         {
             aes.Key = key;

@@ -1,8 +1,8 @@
 @page "/notes/{hash}"
 @model NotesModel
 @{
-    var noteID = Model.NoteID;
-    var notes = Model.GetNotes(noteID);
+    string noteID = Model.GetNoteID();
+    List<Note> notes = Model.GetNotes(noteID);
 }
 
 <div class="notes-container">
@@ -13,7 +13,7 @@
         }
         else
         {
-            <h2>Notes Page</h2>
+            <h2>No Notes Found</h2>
         }
 
         @if (noteID != "")
@@ -35,7 +35,7 @@
     <div class="notes">
         @if (notes.Count > 0)
         {
-            @foreach (var note in notes)
+            @foreach (Note note in notes)
             {
                 <div class="note">
                     <p class="text-muted">@note.Timestamp.ToString("MMMM dd, yyyy h:mm tt")</p>
