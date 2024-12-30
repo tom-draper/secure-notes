@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using SecureNotes.Helpers.Database;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container
 builder.Services.AddRazorPages();

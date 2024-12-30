@@ -17,9 +17,9 @@ services:
     image: postgres:14
     container_name: db
     environment:
-      POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: apppassword
-      POSTGRES_DB: appdb
+      POSTGRES_USER: yourusername
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdatabase
     ports:
       - "5432:5432"
     volumes:
