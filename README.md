@@ -4,6 +4,10 @@ Post and view anonymous notes stored against a unique ID.
 
 ## Getting Started
 
+```bash
+docker compose up -d
+```
+
 ## Example Use Cases
 
 ### Class Feedback

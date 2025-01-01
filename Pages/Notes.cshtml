@@ -7,7 +7,11 @@
 
 <div class="notes-container">
     <div class="header">
-        @if (notes.Count > 0)
+        @if (notes.Count == 1)
+        {
+            <h2>@notes.Count Note</h2>
+        }
+        else if (notes.Count > 0)
         {
             <h2>@notes.Count Notes</h2>
         }

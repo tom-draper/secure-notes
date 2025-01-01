@@ -17,6 +17,11 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
+    public void OnGet()
+    {
+        NoteID = string.Empty;
+    }
+
     public IActionResult OnPost()
     {
         if (string.IsNullOrEmpty(NoteID))

@@ -1,15 +1,16 @@
 services:
   web:
-    image: mcr.microsoft.com/dotnet/aspnet:8.0
     container_name: app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=db;Database=appdb;Username=appuser;Password=apppassword
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=securenotes;Username=yourusername;Password=yourpassword
+    volumes:
+      - ./DataProtection:/root/.aspnet/DataProtection  # Persist data protection keys
     depends_on:
       - db
 
@@ -19,13 +20,12 @@ services:
     environment:
       POSTGRES_USER: yourusername
       POSTGRES_PASSWORD: yourpassword
-      POSTGRES_DB: yourdatabase
+      POSTGRES_DB: securenotes
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-
+      - ./Database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   db_data:
