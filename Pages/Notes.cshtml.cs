@@ -39,6 +39,7 @@ namespace SecureNotes.Pages
                 // Get the note records from the database
                 var entities = _context.Notes
                                         .Where(note => note.NoteID == noteID)
+                                        .OrderByDescending(note => note.Timestamp)
                                         .ToList();
 
                 // Map NoteRecord to Note
@@ -61,6 +62,7 @@ namespace SecureNotes.Pages
         public IActionResult? OnGet(string hash)
         {
             Console.WriteLine("Getting page...");
+            Console.WriteLine("Hash: " + hash);
 
             if (string.IsNullOrEmpty(hash))
                 return RedirectToPage("/Index");
@@ -76,7 +78,7 @@ namespace SecureNotes.Pages
             NoteID = DecodeEncryptedNoteID(hash);
             Console.WriteLine("Note ID: " + NoteID);
 
-            return Page();
+            return null;
         }
 
         // Decode the encrypted NoteID
@@ -92,14 +94,23 @@ namespace SecureNotes.Pages
         public IActionResult? OnPost(string hash)
         {
             Console.WriteLine("Posting note...");
-            string noteID = DecodeEncryptedNoteID(hash);
+            string noteID;
+            try
+            {
+                noteID = DecodeEncryptedNoteID(hash);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
 
             // Ensure NoteID is not empty
             if (string.IsNullOrEmpty(noteID))
             {
                 // Log or handle the error if needed
                 Console.WriteLine("Note ID is empty!");
-                return Page();  // Return the same page if NoteID is empty
+                return null;  // Return the same page if NoteID is empty
             }
 
             // Ensure the note content is not empty
@@ -107,7 +118,7 @@ namespace SecureNotes.Pages
             {
                 // Log or handle the error if needed
                 Console.WriteLine("Note content is empty!");
-                return Page();  // Return the same page if content is empty
+                return null;  // Return the same page if content is empty
             }
 
             // Create a new NoteRecord entity to store the note
@@ -133,7 +144,7 @@ namespace SecureNotes.Pages
             {
                 // Log the error and return an error message if something goes wrong
                 Console.WriteLine("Error: " + ex.Message);
-                return Page();  // Return to the same page with an error message if something fails
+                return null;  // Return to the same page with an error message if something fails
             }
         }
     }

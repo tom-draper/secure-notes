@@ -25,7 +25,8 @@
 textarea {
     width: 100%;
     border-radius: 6px;
-    min-height: 9em;
+    min-height: 25em;
+    padding: 0.5em;
 }
 
 .btn-container {
