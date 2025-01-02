@@ -8,11 +8,11 @@ A privacy-first anonymous note sharing service, with notes stored against a uniq
 
 #### Guaranteed anonymity
 
-Any notes you post are not tied to any form of user identification. Only the contents of the note and a timestamp are submitted to the server.
+Any notes you post are not tied to any form of user identification. Only the encrypted contents of the note and a timestamp are submitted to the server.
 
 #### Password-style search
 
-Notes stored against a given identifier can only be accessed by searching against a note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
+Notes stored against an identifier can only be accessed by searching against this note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
 
 #### Client-side encryption
 
@@ -24,7 +24,7 @@ All notes stored in the database are always encrypted. If a malicious actor gain
 
 #### Encrypted URLs
 
-All note URLs are encrypted. This means that if anybody reads your browser history, they will not know the notes you have accessed.
+All note URLs are encrypted. This means that if anybody reads your browser history, they cannot infer the notes you have accessed.
 
 #### Direct access restriction
 
