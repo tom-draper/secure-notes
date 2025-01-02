@@ -1,6 +1,6 @@
 # Secure Notes
 
-Post and view anonymous notes stored against a unique ID.
+Anonymous notes stored against a unique ID.
 
 ![Secure-Notes-01-01-2025_02_46_PM](https://github.com/user-attachments/assets/06b553e6-84c1-487f-a3cd-5f25c94f1cc5)
 
