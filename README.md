@@ -20,7 +20,7 @@ The contents of notes and any note IDs you search for are encrypted using strong
 
 #### Database encryption
 
-All notes stored in the database are always encrypted. If a malicious actor gains control of the server, they cannot read your notes.
+Notes stored in the database are always encrypted. If a malicious actor gains control of the server, they cannot read your notes.
 
 #### Encrypted URLs
 
