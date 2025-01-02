@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SecureNotes.Helpers.Cryptography;
 using SecureNotes.Helpers.Database;
-using System;
-using System.Linq;
 
 namespace SecureNotes.Pages
 {
@@ -13,19 +11,14 @@ namespace SecureNotes.Pages
         public required string Content { get; set; }
     }
 
-    public class NotesModel : PageModel
+    public class NotesModel(ApplicationDbContext context) : PageModel
     {
         [BindProperty]
         public string? NoteContent { get; set; }  // This binds the input field value to the NoteContent property
 
         public string? NoteID { get; set; }
 
-        private readonly ApplicationDbContext _context;
-
-        public NotesModel(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
 
         public string GetNoteID()
         {
@@ -54,50 +47,47 @@ namespace SecureNotes.Pages
             catch (Exception ex)
             {
                 Console.WriteLine("Error: failed to read notes\n" + ex.Message);
-                return new List<Note>();
+                return [];
             }
         }
 
         // OnGet is called when a GET request is made
-        public IActionResult? OnGet(string hash)
+        public IActionResult? OnGet(string encryptedNoteID)
         {
             Console.WriteLine("Getting page...");
-            Console.WriteLine("Hash: " + hash);
-
-            if (string.IsNullOrEmpty(hash))
+            if (string.IsNullOrEmpty(encryptedNoteID))
                 return RedirectToPage("/Index");
 
-            // Check if the session variable exists
-            var validSearch = HttpContext.Session.GetString("ValidSearch");
-            if (validSearch != "true")
+            NoteID = DecodeEncryptedNoteID(encryptedNoteID);
+
+            string hash = Cryptography.GenerateHash(NoteID);
+
+            // Check if the session hash exists to avoid direct access
+            string storedHash = HttpContext.Session.GetString("SecureNoteHash") ?? string.Empty;
+            HttpContext.Session.Remove("SecureNoteHash");
+            if (hash != storedHash)
                 return RedirectToPage("/Index");
-
-            // Clear the session flag after successful access
-            HttpContext.Session.Remove("ValidSearch");
-
-            NoteID = DecodeEncryptedNoteID(hash);
-            Console.WriteLine("Note ID: " + NoteID);
 
             return null;
         }
 
         // Decode the encrypted NoteID
-        private string DecodeEncryptedNoteID(string encryptedNoteID)
+        private static string DecodeEncryptedNoteID(string encryptedNoteID)
         {
             // Convert the URL-encoded string to a normal string
-            string decodedURL = System.Uri.UnescapeDataString(encryptedNoteID);
+            string decodedURL = Uri.UnescapeDataString(encryptedNoteID);
             string noteID = Cryptography.DecryptString(decodedURL);
             return noteID;
         }
 
         // OnPost is called when a POST request is made (when the form is submitted)
-        public IActionResult? OnPost(string hash)
+        public IActionResult? OnPost(string encryptedNoteID)
         {
             Console.WriteLine("Posting note...");
             string noteID;
             try
             {
-                noteID = DecodeEncryptedNoteID(hash);
+                noteID = DecodeEncryptedNoteID(encryptedNoteID);
             }
             catch (Exception ex)
             {

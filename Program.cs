@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-// Add services to the container
+
 builder.Services.AddRazorPages();
 builder.Services.AddSession(options =>
 {
@@ -17,12 +17,16 @@ builder.Services.AddSession(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Enforce secure cookies (use HTTPS)
 });
 
-builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection"));
+if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
+{
+    // Use dedicated DataProtection Docker volume.
+    builder.Services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection"));
+}
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -34,7 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // Enable session middleware
+app.UseSession(); // Enable session middleware.
 
 app.UseAuthorization();
 

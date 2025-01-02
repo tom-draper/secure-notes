@@ -1,4 +1,4 @@
-@page "/notes/{hash}"
+@page "/notes/{encryptedNoteID}"
 @model NotesModel
 @{
     string noteID = Model.GetNoteID();
@@ -22,7 +22,7 @@
 
         @if (noteID != "")
         {
-            <p>You're viewing Notes for ID: @noteID</p>
+            <p>You're viewing notes for ID: @noteID</p>
         }
     </div>
 

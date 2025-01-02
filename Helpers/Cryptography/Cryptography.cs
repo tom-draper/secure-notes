@@ -19,39 +19,39 @@ public static class Cryptography
 
     public static string EncryptString(string plainText)
     {
-        using (Aes aes = Aes.Create())
-        {
-            aes.Key = key;
-            aes.IV = iv;
+        using Aes aes = Aes.Create();
+        aes.Key = key;
+        aes.IV = iv;
 
-            using (MemoryStream ms = new MemoryStream())
-            using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
-            {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(plainText);
-                cs.Write(inputBytes, 0, inputBytes.Length);
-                cs.FlushFinalBlock();
+        using MemoryStream ms = new();
+        using CryptoStream cs = new(ms, aes.CreateEncryptor(), CryptoStreamMode.Write);
+        byte[] inputBytes = Encoding.UTF8.GetBytes(plainText);
+        cs.Write(inputBytes, 0, inputBytes.Length);
+        cs.FlushFinalBlock();
 
-                return Convert.ToBase64String(ms.ToArray());  // Return encrypted data as Base64 string
-            }
-        }
+        return Convert.ToBase64String(ms.ToArray());  // Return encrypted data as Base64 string
     }
 
     public static string DecryptString(string encryptedText)
     {
-        using (Aes aes = Aes.Create())
-        {
-            aes.Key = key;
-            aes.IV = iv;
+        using Aes aes = Aes.Create();
+        aes.Key = key;
+        aes.IV = iv;
 
-            using (MemoryStream ms = new MemoryStream())
-            using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
-            {
-                byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
-                cs.Write(encryptedBytes, 0, encryptedBytes.Length);
-                cs.FlushFinalBlock();
+        using MemoryStream ms = new();
+        using CryptoStream cs = new(ms, aes.CreateDecryptor(), CryptoStreamMode.Write);
+        byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
+        cs.Write(encryptedBytes, 0, encryptedBytes.Length);
+        cs.FlushFinalBlock();
 
-                return Encoding.UTF8.GetString(ms.ToArray());  // Return decrypted data as string
-            }
-        }
+        return Encoding.UTF8.GetString(ms.ToArray());  // Return decrypted data as string
+    }
+
+    public static string GenerateHash(string input)
+    {
+        using var sha256 = SHA256.Create();
+        var bytes = Encoding.UTF8.GetBytes(input);
+        var hash = sha256.ComputeHash(bytes);
+        return BitConverter.ToString(hash).Replace("-", "").ToLower();
     }
 }

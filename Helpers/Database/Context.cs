@@ -2,10 +2,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SecureNotes.Helpers.Database
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
         public DbSet<NoteRecord> Notes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,7 +14,11 @@ namespace SecureNotes.Helpers.Database
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
                 // Set table name to lowercase
-                entity.SetTableName(entity.GetTableName().ToLower());
+                var tableName = entity.GetTableName();
+                if (tableName != null)
+                {
+                    entity.SetTableName(tableName.ToLower());
+                }
 
                 // Set column names to lowercase
                 foreach (var property in entity.GetProperties())
@@ -27,19 +29,31 @@ namespace SecureNotes.Helpers.Database
                 // Set key names to lowercase
                 foreach (var key in entity.GetKeys())
                 {
-                    key.SetName(key.GetName().ToLower());
+                    var keyName = key.GetName();
+                    if (keyName != null)
+                    {
+                        key.SetName(keyName.ToLower());
+                    }
                 }
 
                 // Set foreign keys to lowercase
                 foreach (var foreignKey in entity.GetForeignKeys())
                 {
-                    foreignKey.SetConstraintName(foreignKey.GetConstraintName().ToLower());
+                    var constraintName = foreignKey.GetConstraintName();
+                    if (constraintName != null)
+                    {
+                        foreignKey.SetConstraintName(constraintName.ToLower());
+                    }
                 }
 
                 // Set indexes to lowercase
                 foreach (var index in entity.GetIndexes())
                 {
-                    index.SetDatabaseName(index.GetDatabaseName().ToLower());
+                    var databaseName = index.GetDatabaseName();
+                    if (databaseName != null)
+                    {
+                        index.SetDatabaseName(databaseName.ToLower());
+                    }
                 }
             }
         }
