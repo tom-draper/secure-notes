@@ -4,11 +4,31 @@ A privacy-first anonymous note sharing service, with notes stored against a uniq
 
 ![Secure-Notes-01-01-2025_02_46_PM](https://github.com/user-attachments/assets/06b553e6-84c1-487f-a3cd-5f25c94f1cc5)
 
-- [ ] Client-side encryption
-- [ ] Encrypted urls
-- [ ] Direct access restriction
-- [ ] Optional timestamps
-- [ ] Password-style search
+## Features
+
+#### Guaranteed Anonymity
+
+Any notes you post are not tied to any form of user identification.
+
+#### Password-style Search
+
+Notes stored against a given identifier can only be accessed by searching against a note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
+
+#### Client-side encryption
+
+The contents of notes and any note IDs you search for are encrypted using strong cryptographic algorithms _before_ it is sent to the server. This means anybody in control of the server, or attempting to intercept data before it reaches the server, cannot read your notes.
+
+#### Encrypted URLs
+
+All note URLs are encrypted. This means that if anybody reads your browser history, they will not know the notes you have accessed.
+
+#### Direct access restriction
+
+Notes can only ever be accessed by entering a note ID into the search bar. If a user gains access to a URL you have visited, they cannot enter the URL into their browser to visit that page directly.
+
+#### Optional Timestamps
+
+When posting a note, timestamps are enabled by default. If you think somebody could infer your activity through the time it was posted, you can disable it before posting.
 
 ## Getting Started
 
