@@ -56,4 +56,4 @@ A substitute teacher at a Primary School notices a child in the class appears un
 
 ### Questions for Speaker
 
-At a yearly keynote event, the audience is encouraged to submit questions for the guest speaker. They scan a QR code on the screen which takes them to the Secure Notes URL for the talk to submit anonymous questions.
+At a yearly keynote event, the audience is encouraged to submit questions for the guest speaker. They scan a QR code on the screen which takes them to the Secure Notes page for the talk to submit anonymous questions.
