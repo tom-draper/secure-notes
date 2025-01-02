@@ -14,13 +14,9 @@ Any notes you post are not tied to any form of user identification. Only the enc
 
 Notes stored against an identifier can only be accessed by searching against this note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
 
-#### Client-side encryption
-
-The contents of notes and any note IDs you search for are encrypted using strong cryptographic algorithms _before_ it is sent to the server. This means anybody in control of the server, or attempting to intercept data before it reaches the server, cannot read your notes.
-
 #### Database encryption
 
-Notes stored in the database are always encrypted. If a malicious actor gains control of the server, they cannot read your notes.
+All notes stored in the database are encrypted. If a malicious actor gains control of the server, they cannot read your notes.
 
 #### Encrypted URLs
 
