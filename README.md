@@ -4,6 +4,12 @@ A privacy-first anonymous note sharing service, with notes stored against a uniq
 
 ![Secure-Notes-01-01-2025_02_46_PM](https://github.com/user-attachments/assets/06b553e6-84c1-487f-a3cd-5f25c94f1cc5)
 
+- [] Client-side encryption
+- [] Encrypted urls
+- [] Direct access restriction
+- [] Optional timestamps
+- [] Password-style search
+
 ## Getting Started
 
 ```bash
