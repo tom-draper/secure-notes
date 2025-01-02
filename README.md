@@ -28,11 +28,11 @@ All note URLs are encrypted. This means that if anybody reads your browser histo
 
 #### Direct access restriction
 
-Notes can only ever be accessed by entering a note ID into the search bar. If a user gains access to a URL you have visited, they cannot enter the URL into their browser to visit that page directly.
+Notes can only ever be accessed by entering a note ID into the search bar. Even if another user gains access to a URL you have visited, they cannot enter the URL directly into their browser to visit that page.
 
 #### Optional timestamps
 
-When posting a note, timestamps are enabled by default. If you think somebody could infer your activity through the time it was posted, you can disable it before posting.
+When posting a note, timestamps are enabled by default. If you feel somebody could infer your activity through the time it was posted, you can disable it before posting.
 
 ## Getting Started
 
