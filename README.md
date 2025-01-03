@@ -16,11 +16,11 @@ Notes stored against an identifier can only be accessed by searching against thi
 
 #### Database encryption
 
-All notes stored in the database are encrypted. If a malicious actor gains control of the server, they cannot read your notes.
+Notes are encrypted before they are stored in the database. If a malicious actor gains control of the server, they cannot read your notes.
 
 #### Encrypted URLs
 
-All note URLs are encrypted. This means that if anybody reads your browser history, they cannot infer the notes you have accessed.
+Secure Note URLs are devoid of any meaningful information. This means that if anybody reads your browser history, they cannot infer the notes you have accessed.
 
 #### Direct access restriction
 
