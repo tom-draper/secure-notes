@@ -12,7 +12,7 @@ Any notes you post are not tied to any form of user identification. Only the enc
 
 #### Password-style search
 
-Notes stored against an identifier can only be accessed by searching against this note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
+Notes are stored against an identifier can only be accessed by searching against this note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
 
 #### Database encryption
 
