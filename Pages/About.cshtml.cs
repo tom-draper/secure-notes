@@ -11,4 +11,3 @@ public class AboutModel(ILogger<AboutModel> logger) : PageModel
     {
     }
 }
-

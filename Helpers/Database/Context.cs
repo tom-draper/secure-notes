@@ -62,8 +62,8 @@ namespace SecureNotes.Helpers.Database
     public class NoteRecord
     {
         public int Id { get; set; }
-        public string NoteID { get; set; }
+        public required string NoteID { get; set; }
         public DateTime? Timestamp { get; set; }
-        public string Content { get; set; }
+        public required string Content { get; set; }
     }
 }

@@ -47,3 +47,6 @@ button.accept-policy {
   line-height: 60px;
 }
 
+.no-decoration {
+  text-decoration: none;
+}

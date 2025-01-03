@@ -29,9 +29,15 @@
     <div class="create-note-container">
         <form method="post" class="create-note">
             <div class="create-note-label">Post an anonymous note:</div>
-            <textarea id="noteContent" name="noteContent"></textarea>
-            <div class="btn-container">
-                <button type="submit" class="btn btn-primary">Post</button>
+            <textarea id="noteContent" name="NoteContent"></textarea>
+            <div class="actions-container">
+                <div class="form-check form-switch include-timestamp-container">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="IncludeTimestamp" value="true" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Include timestamp</label>
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
             </div>
         </form>
     </div>
@@ -42,7 +48,10 @@
             @foreach (Note note in notes)
             {
                 <div class="note">
-                    <p class="text-muted">@note.Timestamp?.ToString("MMMM dd, yyyy h:mm tt")</p>
+                    @if (note.Timestamp != null)
+                    {
+                        <p class="text-muted">@note.Timestamp?.ToString("MMMM dd, yyyy h:mm tt")</p>
+                    }
                     <p>@note.Content</p>
                 </div>
             }
@@ -54,4 +63,4 @@
             </div>
         }
     </div>
-<div>
+    <div>

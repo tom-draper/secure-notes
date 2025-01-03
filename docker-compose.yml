@@ -7,8 +7,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=securenotes;Username=yourusername;Password=yourpassword
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=securenotes;Username=${DB_USERNAME};Password=${DB_PASSWORD}
     volumes:
       - ./DataProtection:/root/.aspnet/DataProtection  # Persist data protection keys
     depends_on:
@@ -18,8 +18,8 @@ services:
     image: postgres:14
     container_name: db
     environment:
-      POSTGRES_USER: yourusername
-      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: securenotes
     ports:
       - "5432:5432"

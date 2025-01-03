@@ -38,6 +38,8 @@ Clone the project to your local machine.
 git clone https://github.com/tom-draper/secure-notes.git
 ```
 
+Create a `.env` file with new database login details, using the `DB_USERNAME` and `DB_PASSWORD` variables, following the same format as the `.env.example` file.
+
 Launch the service using Docker compose and open `http://localhost:8080` in a browser.
 
 ```bash

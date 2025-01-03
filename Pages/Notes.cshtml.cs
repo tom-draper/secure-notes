@@ -16,6 +16,9 @@ namespace SecureNotes.Pages
         [BindProperty]
         public string? NoteContent { get; set; }  // This binds the input field value to the NoteContent property
 
+        [BindProperty]
+        public bool IncludeTimestamp { get; set; }  // This binds the checkbox value to the IncludeTimestamp property
+
         public string? NoteID { get; set; }
 
         private readonly ApplicationDbContext _context = context;
@@ -46,7 +49,7 @@ namespace SecureNotes.Pages
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: failed to read notes\n" + ex.Message);
+                Console.WriteLine("Error: Failed to read database. Ensure the PostgreSQL service is running.\n" + ex.Message);
                 return [];
             }
         }
@@ -54,7 +57,6 @@ namespace SecureNotes.Pages
         // OnGet is called when a GET request is made
         public IActionResult? OnGet(string encryptedNoteID)
         {
-            Console.WriteLine("Getting page...");
             if (string.IsNullOrEmpty(encryptedNoteID))
                 return RedirectToPage("/Index");
 
@@ -83,7 +85,9 @@ namespace SecureNotes.Pages
         // OnPost is called when a POST request is made (when the form is submitted)
         public IActionResult? OnPost(string encryptedNoteID)
         {
-            Console.WriteLine("Posting note...");
+            Console.WriteLine($"IncludeTimestamp received: {IncludeTimestamp}");
+            Console.WriteLine($"NoteContent received: {NoteContent}");
+
             string noteID;
             try
             {
@@ -99,7 +103,7 @@ namespace SecureNotes.Pages
             if (string.IsNullOrEmpty(noteID))
             {
                 // Log or handle the error if needed
-                Console.WriteLine("Note ID is empty!");
+                Console.WriteLine("Note ID is empty.");
                 return null;  // Return the same page if NoteID is empty
             }
 
@@ -107,7 +111,7 @@ namespace SecureNotes.Pages
             if (string.IsNullOrEmpty(NoteContent))
             {
                 // Log or handle the error if needed
-                Console.WriteLine("Note content is empty!");
+                Console.WriteLine("Note content is empty.");
                 return null;  // Return the same page if content is empty
             }
 
@@ -116,7 +120,7 @@ namespace SecureNotes.Pages
             {
                 NoteID = noteID,  // Use the existing NoteID
                 Content = NoteContent,
-                Timestamp = DateTime.UtcNow  // Set the current UTC timestamp
+                Timestamp = IncludeTimestamp ? DateTime.UtcNow : null  // Set the current UTC timestamp
             };
 
             try
