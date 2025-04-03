@@ -8,27 +8,27 @@ A privacy-first anonymous note sharing service, with notes stored against a uniq
 
 #### Guaranteed anonymity
 
-Any notes you post are not tied to any form of user identification. Only the encrypted contents of the note and a timestamp are submitted to the server.
+Any notes you post are completely anonymous, with no connection to your identity. The server only receives the encrypted note content and a timestamp (if enabled).
 
 #### Password-style search
 
-Notes are stored against an identifier can only be accessed by searching against this note ID. The more complex a note ID is, the less likely another user is to guess it, in a similar way to a password.
+Notes are stored with a unique identifier and can only be accessed by searching for this specific note ID. Like passwords, more complex note IDs provide greater security by reducing the chance of someone guessing them.
 
 #### Database encryption
 
-Notes are encrypted before they are stored in the database. If a malicious actor gains control of the server, they cannot read your notes.
+Notes are encrypted before being stored in the database, ensuring that even if a malicious actor gains control of the server, they cannot read your notes.
 
 #### Encrypted URLs
 
-Secure Note URLs are devoid of any meaningful information. This means that if anybody reads your browser history, they cannot infer the notes you have accessed.
+Secure Note URLs contain no meaningful information, ensuring that if someone views your browser history, they cannot determine which notes you have accessed.
 
 #### Direct access restriction
 
-Notes can only ever be accessed by entering a note ID into the search bar. Even if another user gains access to a URL you have visited, they cannot enter the URL directly into their browser to visit that page.
+Notes can only be accessed by entering a note ID into the search bar. If someone discovers a URL you've visited, they still cannot access the note by entering that URL directly into their browser.
 
 #### Optional timestamps
 
-When posting a note, timestamps are enabled by default. If you feel somebody could infer your activity through the time it was posted, you can disable it before posting.
+Timestamps are enabled by default when posting a note. If you're concerned that someone might identify you through posting times, you can disable this feature before submitting your note.
 
 ## Getting Started
 
@@ -50,12 +50,22 @@ docker compose up -d
 
 ### Class Feedback
 
-At the end of a semester, a lecturer requests feedback from their students. They ask their students to open the Secure Notes instance hosted on a University campus server, enter the module ID and submit feedback anonymously.
+At the end of a semester, a lecturer requests feedback from their students. Students are instructed to access the Secure Notes platform hosted on the University's server, enter their module ID, and submit anonymous feedback about the course.
 
 ### Safeguarding
 
-A substitute teacher at a Primary School notices a child in the class appears underweight. They connect to the school's Secure Notes webpage set up for the staff to use and enter the student's ID. They register their observation anonymously with a new note and notice a number of concerning notes previously submitted before deciding to raise the issue with their superior.
+A substitute teacher at a Primary School notices a child in their class appears underweight. They access the school's Secure Notes portal designated for staff use and enter the student's ID. After anonymously registering their observation, they discover several previously submitted concerns about the same student, which prompts them to raise the issue with the Head of School.
 
 ### Questions for Speaker
 
-At a yearly keynote event, the audience is encouraged to submit questions for the guest speaker. They scan a QR code on the screen which takes them to the Secure Notes page for the talk to submit anonymous questions.
+At a yearly keynote event, audience members are encouraged to submit questions for the guest speaker. By scanning a QR code displayed on screen, attendees are directed to a Secure Notes page where they can enter the talk ID and submit their questions anonymously.
+
+## Contributions
+
+Contributions, issues and feature requests are welcome.
+
+- Fork it (https://github.com/tom-draper/secure-notes)
+- Create your feature branch (`git checkout -b my-new-feature`)
+- Commit your changes (`git commit -am 'Add some feature'`)
+- Push to the branch (`git push origin my-new-feature`)
+- Create a new Pull Request
